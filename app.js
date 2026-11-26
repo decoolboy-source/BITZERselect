@@ -1,7 +1,7 @@
 /* [BITZERselect] localStorage dùng chung origin với các PWA khác: mọi khóa của app này có tiền tố "BITZERselect:". */
 
 // ===================== Build info =====================
-const BUILD_VERSION = "2026-11-26.1";
+const BUILD_VERSION = "2026-11-27.1";
 
 // ===================== i18n: UI strings =====================
 const UI = {
