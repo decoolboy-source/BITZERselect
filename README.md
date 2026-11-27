@@ -17,6 +17,16 @@ Tra đúng các mức nhiệt độ có trong dữ liệu nguồn (không nội 
 Số liệu trích từ catalogue của hãng, chỉ để **tham khảo sơ bộ** — đối chiếu tài liệu gốc
 hoặc nhà cung cấp trước khi chọn thiết bị cho dự án thực tế.
 
+## Sổ tay
+
+Tab **Sổ tay** (nút trên thanh đầu / thanh dưới, link thẳng `index.html#so-tay`): 7 thẻ song ngữ, tìm không dấu, lọc Cụm HyperPAC / Mô-đun IQ — đọc tên model,
+đặc điểm và tuỳ chọn, bảng thông số điện/dầu/bình chứa của 63 model, bố trí thiết bị, mô-đun bảo vệ
+IQ CM-RC-02 (đèn báo, mức cảnh báo, chức năng giám sát, khoá máy và reset).
+
+Nguồn: BITZER AVP-103-1 (HyperPAC) và KT-240-3 (CM-RC-02). Bảng thông số giữ nguyên vài số thể
+tích quét trông sai trong tài liệu gốc, có đánh dấu (*).
+Khoá localStorage: `BITZERselect:hbChecks` (checklist).
+
 ## Cấu trúc thư mục
 
 ```
@@ -27,6 +37,8 @@ data-io.js      Xuất/Nhập dữ liệu JSON (chuẩn chung các app)
 nasa-ui.css     Giao diện CHUNG các app chọn thiết bị (giống hệt nhau giữa các app)
 icons.js        Bộ icon CHUNG (trích từ Lucide, chạy offline)
 style.css       Phần riêng của app
+handbook.js     Engine tab Sổ tay (giống hệt bản ở MYCOMselect)
+handbook-data.js Nội dung Sổ tay BITZER (song ngữ) — sửa/thêm thẻ ở đây
 manifest.json   Khai báo PWA
 sw.js           Service worker — cache offline
 icon-*.png      Icon app
@@ -56,6 +68,10 @@ Cập nhật: sửa code/dữ liệu, tăng `CACHE_NAME` trong `sw.js` và `BUIL
 `app.js`, push lên `main`. Dòng "build ..." cuối trang cho biết bản đang chạy.
 
 ## Lịch sử phiên bản
+
+### 2026-11-27.2 — `BITZERselect-v3`
+
+Thêm tab **Sổ tay** (handbook.js + handbook-data.js), thanh dưới thành 3 mục.
 
 ### 2026-11-26.1 — bản đầu `BITZERselect-v1`
 

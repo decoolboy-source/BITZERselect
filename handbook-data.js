@@ -1,0 +1,232 @@
+/* handbook-data.js — Nội dung tab "Sổ tay" của BITZERselect.
+   Engine hiển thị: handbook.js (giống hệt bản ở MYCOMselect / GEAselect / COPELANDselect).
+
+   Nguồn (chỉ tóm tắt số liệu, không chép tài liệu):
+   - BITZER AVP-103-1 — HyperPAC multiple screw compressor packages (brochure)
+   - BITZER KT-240-3 — Compressor module CM-RC-02 (IQ module), chương 8 "Protective functions" */
+
+const HB_GROUPS = {
+  unit:   ["Cụm HyperPAC", "HyperPAC"],
+  module: ["Mô-đun IQ", "IQ module"],
+};
+
+const SRC_HP = "BITZER AVP-103-1 — HyperPAC (brochure)";
+const SRC_IQ = "BITZER KT-240-3 — Compressor module CM-RC-02, chương 8";
+
+const HB_CARDS = [
+  {
+    id: "hp-name", group: "unit", icon: "box",
+    title: ["Đọc tên model cụm HyperPAC", "Reading a HyperPAC model code"],
+    src: SRC_HP,
+    blocks: [
+      { type: "table",
+        head: [["Ví dụ HP 504 - HSN7471 - 300", "Example HP 504 - HSN7471 - 300"], ["Ý nghĩa", "Meaning"]],
+        rows: [
+          ["HP", "HyperPAC"],
+          ["5 (04)", ["Cỡ khung: 4, 5 hoặc 6", "Frame size: 4, 5 or 6"]],
+          ["(5)04", ["Số máy nén trong cụm: 2 … 4", "Number of compressors: 2 … 4"]],
+          ["HSN7471", ["Model máy nén trục vít BITZER", "BITZER screw compressor model"]],
+          ["300", ["Tổng mã lực danh định của các motor trong cụm (HP)", "Package total nominal motor horsepower (HP)"]],
+        ] },
+      { type: "p", text: ["Bảng thông số còn chèn chữ L hoặc M sau số khung (vd. HP402-L-HSN5343-40, HP402-M-HSK5343-60): trong bảng, L luôn đi với máy nén HSN và M đi với máy nén HSK.",
+                          "The technical table also inserts L or M after the frame code (e.g. HP402-L-HSN5343-40, HP402-M-HSK5343-60): in the table L always pairs with HSN and M with HSK compressors."] },
+    ],
+  },
+  {
+    id: "hp-spec", group: "unit", icon: "layers",
+    title: ["Đặc điểm cụm máy HyperPAC", "HyperPAC package features"],
+    src: SRC_HP,
+    blocks: [
+      { type: "list", items: [
+        ["Cụm 2–4 máy nén trục vít bán kín (HS) hoặc hở (OS): HSK(N)5343…HSK(N)8591, OSK(N)5341…OSK(N)8571.", "2–4 semi-hermetic (HS) or open (OS) screws: HSK(N)5343…HSK(N)8591, OSK(N)5341…OSK(N)8571."],
+        ["Thể tích quét 168–2140 m³/h (50 Hz), công suất motor 40–640 HP; có bản thiết kế theo yêu cầu.", "Displacement 168–2140 m³/h (50 Hz), 40–640 HP; custom versions on request."],
+        ["Môi chất R134a, R404A, R507A, R407C (khác theo yêu cầu); nhiệt độ cao, trung bình và thấp.", "R134a, R404A, R507A, R407C (others on request); high, medium and low temperature."],
+        ["Áp suất cho phép tối đa phía đẩy 28 bar; có rơ-le áp cao và áp thấp.", "Max. allowable discharge pressure 28 bar; HP and LP switches."],
+        ["Economizer cho cả nhiệt độ trung bình và thấp; ống lỏng quá lạnh có bọc cách nhiệt và van chặn.", "Economizer for medium and low temp; insulated subcooled liquid line with isolation valve."],
+        ["Hệ dầu đi ống sẵn kèm thiết bị an toàn; bình tách dầu hiệu suất cao có điều khiển mức, sưởi dầu, thermostat, kính xem, van an toàn.", "Fully piped oil system with safety devices; high-efficiency separator with level control, heaters, thermostat, sight glasses, relief valve."],
+        ["Bảo vệ motor thông minh: theo dõi nhiệt, thứ tự pha, trễ khởi động lại. Mỗi máy nén có lọc hút riêng.", "Intelligent motor protection: thermal, phase sequence, restart delay. Individual suction filter per compressor."],
+        ["Bình chứa cao áp có van an toàn, phin sấy lỏng cỡ lớn, kính xem lỏng.", "Liquid receiver with relief valve, large filter drier, liquid sight glass."],
+        ["Giao kèm dầu cho lần chạy đầu; nạp nitơ giữ áp khi vận chuyển.", "Oil charge for start-up supplied; shipped with nitrogen holding charge."],
+      ] },
+      { type: "table",
+        head: [["Tuỳ chọn", "Options"], ["Mô tả", "Description"]],
+        rows: [
+          [["Dàn ngưng giải nhiệt nước", "Water-cooled condenser"], ["Chọn theo ứng dụng", "To suit the application"]],
+          [["Giải nhiệt dầu", "Oil cooler"], ["Nước hoặc gió, có van điều chỉnh nhiệt độ dầu", "Water or air cooled, with oil temperature valve"]],
+          [["Đồng hồ áp suất", "Pressure gauges"], ["Áp cao, áp thấp; loại có dầu, kèm van chặn", "HP and LP, liquid-filled, with isolation valves"]],
+          [["Tủ điện", "Control board"], ["PLC, đèn chạy và đèn lỗi từng máy", "PLC, run lights and individual fault lights"]],
+        ] },
+      { type: "alert", tone: "info", text: ["Công suất trong catalogue: 50 Hz, quá nhiệt hơi hút 10 K, có economizer; nhiệt độ lỏng cao hơn nhiệt độ bão hoà 5 K tại cửa vào economizer (EN 12900). Số liệu máy nén chứng nhận ASERCOM xem BITZER Software.",
+                                            "Catalogue capacities: 50 Hz, 10 K suction superheat, economizer; liquid 5 K above saturation at economizer inlet (EN 12900). ASERCOM-certified data in BITZER Software."] },
+    ],
+  },
+  {
+    id: "hp-tech", group: "unit", icon: "table-2",
+    title: ["Thông số kỹ thuật cụm HyperPAC (điện, dầu, bình chứa)", "HyperPAC technical data (electrical, oil, receiver)"],
+    src: SRC_HP,
+    blocks: [
+      { type: "p", text: ["Nguồn điện tất cả model: 380–420 V / 3 pha / 50 Hz.", "Supply for all models: 380–420 V / 3 ph / 50 Hz."] },
+      { type: "table",
+        head: ["Model", ["Số máy", "Comp."], ["Thể tích (m³/h)", "Displ. (m³/h)"], ["Dòng max (A)", "Max current (A)"], ["Dầu (dm³)", "Oil (dm³)"], ["Sưởi dầu (W)", "Sump heater (W)"], ["Bình chứa R134a (kg)", "Receiver R134a (kg)"], ["Bình chứa R404A (kg)", "Receiver R404A (kg)"]],
+        rows: [
+          ["HP402-L-HSN5343-40", "2", "26.8 (*)", "74", "18", "1 × 140", "123.6", "107.7"],
+          ["HP403-L-HSN5343-60", "3", "40.2 (*)", "111", "40", "2 × 100", "123.6", "107.7"],
+          ["HP404-L-HSN5343-80", "4", "53.2 (*)", "148", "40", "2 × 100", "251.6", "219.2"],
+          ["HP402-M-HSK5343-60", "2", "168", "94", "18", "1 × 140", "123.6", "107.7"],
+          ["HP403-M-HSK5343-90", "3", "252", "141", "40", "2 × 100", "123.6", "107.7"],
+          ["HP404-M-HSK5343-120", "4", "336", "188", "40", "2 × 100", "251.6", "219.2"],
+          ["HP402-L-HSN5353-50", "2", "200", "88", "18", "1 × 140", "123.6", "107.7"],
+          ["HP403-L-HSN5353-75", "3", "300", "132", "40", "2 × 100", "123.6", "107.7"],
+          ["HP404-L-HSN5353-100", "4", "400", "176", "40", "2 × 100", "251.6", "219.2"],
+          ["HP402-M-HSK5353-70", "2", "200", "112", "18", "1 × 140", "123.6", "107.7"],
+          ["HP403-M-HSK5353-105", "3", "300", "168", "40", "2 × 100", "123.6", "107.7"],
+          ["HP404-M-HSK5353-140", "4", "400", "224", "40", "2 × 100", "251.6", "219.2"],
+          ["HP402-L-HSN5363-60", "2", "236", "100", "18", "1 × 140", "123.6", "107.7"],
+          ["HP403-L-HSN5363-90", "3", "354", "150", "40", "2 × 100", "123.6", "107.7"],
+          ["HP404-L-HSN5363-120", "4", "472", "200", "40", "2 × 100", "251.6", "219.2"],
+          ["HP402-M-HSK5363-80", "2", "236", "130", "40", "2 × 100", "123.6", "107.7"],
+          ["HP403-M-HSK5363-120", "3", "354", "195", "40", "2 × 100", "123.6", "107.7"],
+          ["HP404-M-HSK5363-160", "4", "472", "260", "90", "3 × 140", "251.6", "219.2"],
+          ["HP502-L-HSN6451-80", "2", "26.8 (*)", "130", "40", "2 × 100", "123.6", "107.7"],
+          ["HP503-L-HSN6451-120", "3", "40.2 (*)", "195", "40", "2 × 100", "251.6", "219.2"],
+          ["HP504-L-HSN6451-160", "4", "53.2 (*)", "260", "40", "2 × 100", "251.6", "219.2"],
+          ["HP502-M-HSK6451-100", "2", "280", "158", "40", "2 × 100", "123.6", "107.7"],
+          ["HP503-M-HSK6451-150", "3", "420", "237", "40", "2 × 100", "251.6", "219.2"],
+          ["HP504-M-HSK6451-200", "4", "560", "316", "90", "3 × 140", "251.6", "219.2"],
+          ["HP502-L-HSN6461-100", "2", "330", "158", "40", "2 × 100", "123.6", "107.7"],
+          ["HP503-L-HSN6461-150", "3", "495", "237", "40", "2 × 100", "251.6", "219.2"],
+          ["HP504-L-HSN6461-200", "4", "660", "316", "90", "3 × 140", "251.6", "219.2"],
+          ["HP502-M-HSK6461-120", "2", "330", "196", "40", "2 × 100", "123.6", "107.7"],
+          ["HP503-M-HSK6461-180", "3", "495", "294", "90", "3 × 140", "251.6", "219.2"],
+          ["HP504-M-HSK6461-240", "4", "660", "392", "90", "3 × 140", "251.6", "219.2"],
+          ["HP502-L-HSN7451-120", "2", "384", "196", "40", "2 × 100", "251.6", "219.2"],
+          ["HP503-L-HSN7451-180", "3", "576", "294", "40", "2 × 100", "251.6", "219.2"],
+          ["HP504-L-HSN7451-240", "4", "768", "392", "90", "3 × 140", "353.1", "307.6"],
+          ["HP502-M-HSK7451-140", "2", "384", "248", "40", "2 × 100", "251.6", "219.2"],
+          ["HP503-M-HSK7451-210", "3", "576", "372", "90", "3 × 140", "353.1", "307.6"],
+          ["HP504-M-HSK7451-280", "4", "768", "496", "90", "3 × 140", "353.1", "307.6"],
+          ["HP502-L-HSN7461-140", "2", "440", "248", "40", "2 × 100", "251.6", "219.2"],
+          ["HP503-L-HSN7461-210", "3", "660", "372", "90", "3 × 140", "353.1", "307.6"],
+          ["HP504-L-HSN7461-280", "4", "880", "496", "90", "3 × 140", "353.1", "307.6"],
+          ["HP502-M-HSK7461-160", "2", "440", "288", "40", "2 × 100", "251.6", "219.2"],
+          ["HP503-M-HSK7461-240", "3", "660", "432", "90", "3 × 140", "353.1", "307.6"],
+          ["HP504-M-HSK7461-320", "4", "880", "576", "140", "3 × 140", "353.1", "307.6"],
+          ["HP502-L-HSN7471-150", "2", "500", "288", "40", "2 × 100", "251.6", "219.2"],
+          ["HP503-L-HSN7471-225", "3", "750", "432", "90", "3 × 140", "353.1", "307.6"],
+          ["HP504-L-HSN7471-300", "4", "1000", "576", "90", "3 × 140", "353.1", "307.6"],
+          ["HP502-M-HSK7471-180", "2", "500", "324", "90", "3 × 140", "251.6", "219.2"],
+          ["HP503-M-HSK7471-270", "3", "750", "486", "90", "3 × 140", "353.1", "307.6"],
+          ["HP504-M-HSK7471-360", "4", "1000", "648", "140", "3 × 140", "353.1", "307.6"],
+          ["HP602-M-HSK8551-220", "2", "26.8 (*)", "360", "90", "3 × 140", "353.1", "307.6"],
+          ["HP603-M-HSK8551-330", "3", "40.2 (*)", "540", "90", "3 × 140", "353.1", "307.6"],
+          ["HP604-M-HSK8551-440", "4", "53.2 (*)", "720", "140", "3 × 140", "521.9", "454.7"],
+          ["HP602-M-HSK8561-250", "2", "718", "432", "90", "3 × 140", "353.1", "307.6"],
+          ["HP603-M-HSK8561-375", "3", "1077", "648", "140", "3 × 140", "521.9", "454.7"],
+          ["HP604-M-HSK8561-500", "4", "1436", "864", "140", "3 × 140", "606.8", "528.7"],
+          ["HP602-L-HSN8571-250", "2", "820", "432", "90", "3 × 140", "353.1", "307.6"],
+          ["HP603-L-HSN8571-375", "3", "1230", "648", "140", "3 × 140", "521.9", "454.7"],
+          ["HP604-L-HSN8571-500", "4", "1640", "864", "140", "3 × 140", "606.8", "528.7"],
+          ["HP602-M-HSK8571-280", "2", "820", "492", "90", "3 × 140", "353.1", "307.6"],
+          ["HP603-M-HSK8571-420", "3", "1230", "738", "140", "3 × 140", "521.9", "454.7"],
+          ["HP604-M-HSK8571-560", "4", "1640", "984", "250", "3 × 200", "606.8", "528.7"],
+          ["HP602-L-HSN8591-320", "2", "1070", "520", "90", "3 × 140", "353.1", "307.6"],
+          ["HP603-L-HSN8591-480", "3", "1605", "780", "140", "3 × 140", "521.9", "454.7"],
+          ["HP604-L-HSN8591-640", "4", "2140", "1040", "250", "3 × 200", "606.8", "528.7"],
+        ],
+        note: ["(*) Ghi đúng theo tài liệu nhưng có vẻ sai: các dòng này lặp lại 26.8 / 40.2 / 53.2 m³/h dù máy nén khác nhau (vd. cùng máy HSK5343 ghi 168 m³/h cho 2 máy). Kiểm tra lại bằng BITZER Software. Dầu nạp tính theo bình tách dầu, khi chạy thử có thể cần thêm. Khối lượng bình chứa là khả năng chứa gas tối đa khi pump-down, có thể khác yêu cầu hệ thống.",
+               "(*) As printed but apparently wrong: these rows repeat 26.8 / 40.2 / 53.2 m³/h for different compressors (the same HSK5343 shows 168 m³/h for 2 units). Check in BITZER Software. Oil charge covers the separator; more may be needed at commissioning. Receiver figure is max. pump-down capacity and may differ from system needs."] },
+    ],
+  },
+  {
+    id: "hp-layout", group: "unit", icon: "factory",
+    title: ["Bố trí thiết bị trên cụm HP 400 / 500 / 600", "HP 400 / 500 / 600 component layout"],
+    src: SRC_HP,
+    blocks: [
+      { type: "table",
+        head: [["Số", "No."], ["Thiết bị", "Component"]],
+        rows: [
+          ["1", ["Đầu nối hút", "Suction connections"]], ["2", ["Lọc hút tháo được, mỗi máy nén một bộ", "Demountable suction filter per compressor"]],
+          ["3", ["Đầu vào bình chứa lỏng", "Liquid receiver inlet"]], ["4", ["Bình chứa lỏng", "Liquid receiver"]],
+          ["5", ["Máy nén trục vít BITZER", "BITZER screw compressor"]], ["6", ["Khung thép", "Solid metal frame"]],
+          ["7", ["Đầu ra lỏng", "Liquid outlet"]], ["8", ["Ống góp hút", "Suction header"]],
+          ["9", "Economizer"], ["10", ["Đầu nối đẩy", "Discharge connection"]],
+          ["11", ["Ống góp đẩy", "Discharge header"]], ["12", ["Bình tách dầu", "Oil separator"]],
+          ["13", ["Lọc dầu", "Oil filter"]], ["14", ["Công tắc dòng dầu", "Oil flow switch"]],
+          ["15", ["Van điện từ đường dầu", "Oil line solenoid valve"]], ["16", ["Van điện từ giảm tải máy nén", "Compressor unloading solenoid valve"]],
+          ["17", ["Dàn ngưng giải nhiệt nước (tuỳ chọn)", "Water-cooled condenser (option)"]], ["18", ["Bộ giải nhiệt dầu (tuỳ chọn)", "Oil cooler (option)"]],
+          ["19", ["Tủ điện (tuỳ chọn)", "Electrical panel (option)"]],
+        ] },
+    ],
+  },
+
+  // ===================== MÔ-ĐUN IQ =====================
+  {
+    id: "iq-led", group: "module", icon: "info",
+    title: ["Mô-đun IQ CM-RC-02: đèn báo & mức cảnh báo", "CM-RC-02 IQ module: status LEDs & alarm levels"],
+    src: SRC_IQ,
+    blocks: [
+      { type: "table",
+        head: [["Đèn LED", "LED"], ["Ý nghĩa", "Meaning"]],
+        rows: [
+          [["Xanh lá", "Green"], ["Vận hành bình thường", "Normal operation"]],
+          [["Vàng", "Yellow"], ["Ít nhất một cảm biến vượt ngưỡng cảnh báo (Warning hoặc Critical alarm)", "At least one sensor above a warning threshold (Warning or Critical alarm)"]],
+          [["Đỏ", "Red"], ["Motor máy nén đã bị dừng (Fault)", "Compressor motor stopped (Fault)"]],
+          [["Xanh dương", "Blue"], ["Đang truyền dữ liệu qua Modbus hoặc Bluetooth", "Data transfer via Modbus or Bluetooth"]],
+        ] },
+      { type: "table",
+        head: [["Mức", "Level"], ["Ý nghĩa", "Meaning"]],
+        rows: [
+          ["Warning", ["Sắp chạm giới hạn ứng dụng. Chỉ là thông báo phần mềm (không phải tín hiệu an toàn), bộ điều khiển hệ thống có thể dùng để can thiệp", "Application limit almost reached. Software message only, usable by the system controller"]],
+          ["Critical alarm", ["Đã vượt giới hạn; mô-đun can thiệp (limiter). Không về lại trong thời gian trễ thì chuyển thành Fault", "Limit exceeded; module acts (limiter). Becomes a Fault if not cleared within the delay"]],
+          ["Fault", ["Vượt quá nhiều hoặc quá lâu — motor bị dừng, đèn đỏ sáng", "Exceeded too far or too long — motor stopped, red LED"]],
+        ],
+        note: ["Mô-đun giao tiếp với bộ điều khiển hệ thống qua Modbus RS485. Danh sách lỗi đầy đủ, nguyên nhân và cách nhả xem trong BEST SOFTWARE.", "Communicates over Modbus RS485. Full alarm list, causes and release type in BEST SOFTWARE."] },
+    ],
+  },
+  {
+    id: "iq-monitor", group: "module", icon: "gauge",
+    title: ["Các chức năng mô-đun IQ giám sát", "IQ module monitored functions"],
+    src: SRC_IQ,
+    blocks: [
+      { type: "table",
+        head: [["Giám sát", "Function"], ["Cảnh báo", "Warning"], ["Lỗi (dừng máy)", "Fault (stop)"]],
+        rows: [
+          [["Nhiệt độ khí đẩy", "Discharge gas temp."], ["> 140 °C (máy 2 cấp: 130 °C)", "> 140 °C (2-stage: 130 °C)"], ["> 150 °C (2 cấp: 140 °C) — ngắt ngay", "> 150 °C (2-stage: 140 °C) — switches off at once"]],
+          [["Nhiệt độ motor", "Motor temperature"], "—", ["Khoá máy ngay", "Locks out at once"]],
+          [["Mức dầu (OLS-1 / OLC-D1)", "Oil level (OLS-1 / OLC-D1)"], ["Sau 6 s", "After 6 s"], ["Khoá máy sau thêm 85 s", "Locks out after further 85 s"]],
+          [["Chênh áp dầu (DP-3 / DP-2 / DP-1)", "Oil differential (DP-3 / DP-2 / DP-1)"], ["Sau 5 s", "After 5 s"], ["Khoá sau thêm 85 s (R744 8 xi lanh: 25 s)", "Locks out after further 85 s (R744 8-cyl: 25 s)"]],
+          [["Số lần đóng cắt máy nén", "Switching frequency"], ["Theo từng model (xem hướng dẫn vận hành)", "Per model (see operating instructions)"], "—"],
+          [["Cấp dầu OLM-IQ (bo mở rộng CM-IO-A/B)", "Oil feed OLM-IQ (CM-IO-A/B board)"], ["Sau 5 s", "After 5 s"], ["Ngắt sau thêm 25 s", "Switches off after further 25 s"]],
+          [["Giới hạn ứng dụng (CM-IO-B, tuỳ chọn) — trễ 120 s sau khởi động", "Application limits (CM-IO-B, option) — 120 s delay after start"], ["< 2 K / < 2 bar trong giới hạn", "< 2 K / < 2 bar inside the limit"], ["Critical > 2 K / 2 bar ngoài giới hạn: ngắt sau 30 s; > 4 K / 4 bar: ngắt ngay", "Critical > 2 K / 2 bar outside: off after 30 s; > 4 K / 4 bar: off at once"]],
+          [["Áp thấp / áp cao (tuỳ chọn)", "Low / high pressure (option)"], "—", ["Thấp hơn / cao hơn giá trị cài: khoá ngay", "Below / above set value: locks out at once"]],
+        ] },
+      { type: "list", items: [
+        ["Ngưỡng áp cao không được đặt cao hơn số trên nhãn máy. Ngưỡng áp thấp được đặt thấp hơn giới hạn vận hành (vd. cho 120 s đầu sau khởi động).", "HP cut-out must not exceed nameplate data. LP cut-out may be below the operating limit (e.g. for the first 120 s)."],
+      ] },
+    ],
+  },
+  {
+    id: "iq-reset", group: "module", icon: "list-checks",
+    title: ["Mô-đun IQ: dừng, khoá máy và reset", "IQ module: switch-off, lock-out and reset"],
+    src: SRC_IQ,
+    blocks: [
+      { type: "table",
+        head: [["Kiểu", "Type"], ["Ý nghĩa", "Meaning"]],
+        rows: [
+          [["Switch off (ngắt)", "Switch off"], ["Dừng máy, tự cho chạy lại khi thông số về giới hạn sau thời gian trễ (timed reset, mặc định 60 s)", "Stops, then released automatically after the delay once values are back in limits (timed reset, default 60 s)"]],
+          [["Lock out (khoá)", "Lock out"], ["Dừng máy và phải reset", "Stops and must be reset"]],
+          [["Immediately (ngay)", "Immediately"], ["Đổi trạng thái không trễ", "Status changes without delay"]],
+        ] },
+      { type: "list", items: [
+        ["Mô-đun khoá máy khi lỗi nặng, khi ngắt cùng một lỗi 5 lần trong 24 giờ, hoặc ngắt 5 lần bất kỳ trong 1 giờ.", "Locks out on serious faults, after 5 equal switch-offs in 24 h, or any 5 switch-offs within 1 h."],
+        ["Trước khi reset: đọc báo động trong BEST SOFTWARE, tìm và khắc phục nguyên nhân, rồi mới reset.", "Before reset: read alarms in BEST SOFTWARE, find and fix the cause, then reset."],
+        ["Cách reset: lệnh Modbus (Control Word) từ bộ điều khiển hệ thống, hoặc nút RESET trong menu ALARMS của BEST SOFTWARE.", "Reset via Modbus Control Word from the system controller, or RESET in the ALARMS menu of BEST SOFTWARE."],
+        ["Quá nhiệt motor: mô-đun tự khoá và phải reset bằng tay sau khi xử lý nguyên nhân.", "Motor over-temperature locks out and needs a manual reset after fixing the cause."],
+        ["Mọi báo động được lưu trong data log; sau khi reset vẫn còn, chỉ chuyển sang trạng thái không hoạt động.", "All alarms stay in the data log; after reset they show as inactive."],
+      ] },
+    ],
+  },
+];
+
+// Tài liệu BITZER trong thư mục không nêu chu kỳ bảo trì theo giờ → không có máy tính mốc bảo trì.
+const HB_MAINT = {};
